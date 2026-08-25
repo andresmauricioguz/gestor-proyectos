@@ -25,7 +25,7 @@ class Tarea(models.Model):
         ('COMPLETADA', 'Completada'),
     ]
 
-    Proyecto = models.ForeignKey(
+    proyecto = models.ForeignKey(
         Proyecto,
         on_delete=models.CASCADE,
         related_name='tareas'
