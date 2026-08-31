@@ -7,6 +7,9 @@ from .models import Proyecto, Tarea
 def home(request):
     return render(request, 'home.html')
 
+def acerca_de(request):
+    return render(request, 'acerca-de.html')
+
 def mostrar_proyectos(request):
     proyectos =  Proyecto.objects.all()
 
@@ -40,17 +43,19 @@ def ver_proyecto(request, id):
     return render(request, 'detalle_proyecto.html', {'proyecto': proyecto})
 
 def nuevo_proyecto(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         nombre = request.POST.get('nombre')
         descripcion = request.POST.get('descripcion')
         duracion = request.POST.get('duracion')
+        imagen = request.FILES.get('imagen')
 
         if nombre and descripcion and duracion:
-            proyecto = Proyecto(
+            proyecto = Proyecto (
                 nombre=nombre,
                 descripcion=descripcion,
-                duracion=duracion
-            )
+                duracion=int(duracion),
+                imagen = imagen
+                )
             proyecto.save()
 
             return redirect('proyectos')
@@ -123,3 +128,4 @@ def eliminar_tarea(request, id ):
     tarea.delete()
 
     return redirect('ver_proyecto', id=id_proyecto)
+
