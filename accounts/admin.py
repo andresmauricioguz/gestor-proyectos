@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import *  # Importa tus modelos cuando los crees
+from gestor_proyecto.models import Proyecto, Tarea
 
-# Ejemplo: admin.site.register(TuModelo)
+admin.site.register(Proyecto)
+admin.site.register(Tarea)

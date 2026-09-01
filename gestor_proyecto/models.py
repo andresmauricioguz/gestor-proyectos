@@ -43,3 +43,5 @@ class Tarea(models.Model):
         choices=ESTADO_CHOICES,
         default='PENDIENTE',
     )
+    def _str_(self):
+        return self.titulo + "(" + self.proyecto.nombre + ")"
