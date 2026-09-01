@@ -7,6 +7,7 @@ class Proyecto(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     duracion = models.IntegerField()
+    imagen= models.ImageField(upload_to='img/',default='img/logo.png')
 
 class Tarea(models.Model):
     '''
@@ -42,3 +43,5 @@ class Tarea(models.Model):
         choices=ESTADO_CHOICES,
         default='PENDIENTE',
     )
+    def _str_(self):
+        return self.titulo + "(" + self.proyecto.nombre + ")"
